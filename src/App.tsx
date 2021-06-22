@@ -1,5 +1,19 @@
+import { BrowserRouter } from "react-router-dom";
+import { AuthContextProvider } from "./context/Auth";
+
+import { Routes } from "./routes";
+
+import { GlobalStyle } from "./styles/global";
+
 function App() {
-  return <h1>Hello World</h1>;
+  return (
+    <BrowserRouter>
+      <GlobalStyle />
+      <AuthContextProvider>
+        <Routes />
+      </AuthContextProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
