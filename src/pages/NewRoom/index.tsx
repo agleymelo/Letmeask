@@ -50,6 +50,11 @@ export function NewRoom() {
         <MainContent>
           <img src={logoImg} alt="Letmeask" />
 
+          <div className="mobile-text">
+            <strong>Crie salas de Q&amp;A ao-vivo</strong>
+            <p>Tire as dúvidas da sua audiência em tempo-real</p>
+          </div>
+
           <h2>Criar uma nova sala</h2>
 
           <form onSubmit={handleCreateRoom}>

@@ -10,6 +10,8 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background: #f8f8f8;
     color: #29292e;
+
+    min-width: 100vw;
   }
 
   body, input, button, textarea {

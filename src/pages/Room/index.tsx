@@ -144,8 +144,6 @@ export function Room() {
             </Button>
           </FormFooter>
         </Form>
-
-        {JSON.stringify(questions)}
       </Main>
     </Container>
   );

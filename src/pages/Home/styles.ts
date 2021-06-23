@@ -33,6 +33,51 @@ export const Aside = styled.aside`
     margin-top: 16px;
     color: #f8f8f8;
   }
+
+  /* Mobile */
+  @media only screen and (min-width: 800px) and (max-width: 900px) {
+    flex: 5;
+
+    padding: 90px 60px;
+
+    img {
+      max-width: 300px;
+    }
+
+    strong {
+      font-size: 32px;
+      line-height: 40px;
+    }
+
+    p {
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+
+  @media only screen and (min-width: 700px) and (max-width: 800px) {
+    flex: 4;
+
+    padding: 80px 50px;
+
+    img {
+      max-width: 260px;
+    }
+
+    strong {
+      font-size: 26px;
+      line-height: 38px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 26px;
+    }
+  }
+
+  @media only screen and (max-width: 700px) {
+    display: none;
+  }
 `;
 
 export const Main = styled.main`
@@ -55,6 +100,31 @@ export const MainContent = styled.div`
 
   > img {
     align-self: center;
+  }
+
+  .mobile-text {
+    display: none;
+
+    @media only screen and (min-width: 300px) and (max-width: 700px) {
+      display: flex;
+
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      strong {
+        font: 700 18px "Poppins", sans-serif;
+        line-height: 42px;
+        margin-top: 16px;
+      }
+
+      p {
+        font-size: 14px;
+        line-height: 26px;
+        margin-top: 8px;
+        color: #a8a8b3;
+      }
+    }
   }
 
   form {
@@ -99,6 +169,10 @@ export const MainContent = styled.div`
 
     &:hover {
       filter: brightness(0.9);
+    }
+
+    @media only screen and (min-width: 300px) and (max-width: 700px) {
+      margin-top: 32px;
     }
   }
 

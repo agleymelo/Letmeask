@@ -58,6 +58,11 @@ export function Home() {
         <MainContent>
           <img src={logoImg} alt="Letmeask" />
 
+          <div className="mobile-text">
+            <strong>Crie salas de Q&amp;A ao-vivo</strong>
+            <p>Tire as dúvidas da sua audiência em tempo-real</p>
+          </div>
+
           <button className="create-room" onClick={handleCreateRoom}>
             <img src={googleIconImg} alt="Icone do Google" />
             Crie sua sala com o Google
