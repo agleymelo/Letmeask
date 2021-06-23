@@ -7,7 +7,7 @@ export const Container = styled.div`
 `;
 
 export const Aside = styled.aside`
-  flex: 7;
+  flex: 6;
   background: #835afd;
   color: #fff;
 
@@ -36,7 +36,7 @@ export const Aside = styled.aside`
 
   /* Mobile */
   @media only screen and (min-width: 800px) and (max-width: 900px) {
-    flex: 5;
+    flex: 4;
 
     padding: 90px 60px;
 
@@ -81,13 +81,17 @@ export const Aside = styled.aside`
 `;
 
 export const Main = styled.main`
-  flex: 8;
+  flex: 9;
 
   padding: 0 32px;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media only screen and (min-width: 300px) and (max-width: 700px) {
+    flex: 1;
+  }
 `;
 
 export const MainContent = styled.div`
@@ -105,21 +109,36 @@ export const MainContent = styled.div`
   .mobile-text {
     display: none;
 
+    strong {
+      font: 700 16px "Poppins", sans-serif;
+      line-height: 42px;
+      margin-top: 16px;
+    }
+
+    p {
+      font-size: 12px;
+      line-height: 26px;
+      margin-top: 8px;
+      color: #a8a8b3;
+    }
+
     @media only screen and (min-width: 300px) and (max-width: 700px) {
       display: flex;
 
       flex-direction: column;
       align-items: center;
       justify-content: center;
+    }
 
+    @media only screen and (max-width: 400px) {
       strong {
-        font: 700 18px "Poppins", sans-serif;
+        font: 700 16px "Poppins", sans-serif;
         line-height: 42px;
         margin-top: 16px;
       }
 
       p {
-        font-size: 14px;
+        font-size: 12px;
         line-height: 26px;
         margin-top: 8px;
         color: #a8a8b3;
@@ -143,6 +162,13 @@ export const MainContent = styled.div`
     button,
     input {
       width: 100%;
+    }
+
+    @media only screen and (min-width: 300px) and (max-width: 500px) {
+      button {
+        margin-top: 24px;
+        height: 42px;
+      }
     }
   }
 
@@ -172,7 +198,12 @@ export const MainContent = styled.div`
     }
 
     @media only screen and (min-width: 300px) and (max-width: 700px) {
-      margin-top: 32px;
+      margin-top: 24px;
+    }
+
+    @media only screen and (min-width: 300px) and (max-width: 500px) {
+      font-size: 14px;
+      height: 42px;
     }
   }
 

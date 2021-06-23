@@ -1,4 +1,5 @@
 import { FormEvent, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 
 import logoImg from "../../assets/images/logo.svg";
@@ -87,7 +88,8 @@ export function Room() {
     }
 
     if (!user) {
-      throw new Error("You must be logged in");
+      toast.error("You must be logged in");
+      return;
     }
 
     const question = {
