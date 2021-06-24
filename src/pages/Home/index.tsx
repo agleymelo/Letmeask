@@ -46,6 +46,8 @@ export function Home() {
       return;
     }
 
+    toast.success("Entering the room...");
+
     history.push(`/rooms/${roomCode}`);
   }
 

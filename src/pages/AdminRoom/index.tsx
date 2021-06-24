@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
+import emptyQuestionsImg from "../../assets/images/empty-questions.svg";
 import logoImg from "../../assets/images/logo.svg";
 import closeImg from "../../assets/images/close.svg";
 import trashImg from "../../assets/images/trash.svg";
@@ -24,6 +25,7 @@ import {
   Main,
   RoomTitle,
   QuestionList,
+  EmptyQuestions,
 } from "./styles";
 
 type RoomParams = {
@@ -49,7 +51,7 @@ export function AdminRoom() {
 
   const history = useHistory();
 
-  const { title, questions } = useRoom(roomId);
+  const { title, questions, isAuthor, roomHasClosed } = useRoom(roomId);
   const { modalIsOpen, setModalOpen, setModalClose } = useModal();
 
   const {
@@ -61,6 +63,25 @@ export function AdminRoom() {
   const [selectQuestion, setSelectionQuestion] = useState<
     SelectQuestion | undefined
   >(undefined);
+
+  useEffect(() => {
+    const hasLoadedRoom = isAuthor !== undefined && roomHasClosed !== undefined;
+
+    if (roomHasClosed && hasLoadedRoom) {
+      history.push("/");
+      return;
+    }
+
+    if (!isAuthor && hasLoadedRoom) {
+      toast.error("You are not the creator of the room.");
+      history.push(`/room/${roomId}`);
+      return;
+    }
+  }, [history, isAuthor, roomHasClosed, roomId]);
+
+  useEffect(() => {
+    document.title = `Letmeask - Sala ${title}`;
+  }, [title]);
 
   async function handleEndRoom() {
     await database.ref(`rooms/${roomId}`).update({
@@ -129,23 +150,36 @@ export function AdminRoom() {
         </RoomTitle>
 
         <QuestionList>
-          {questions.map((question) => {
-            return (
-              <Question
-                key={question.id}
-                content={question.content}
-                author={question.author}
-              >
-                <button
+          {questions.length > 0 ? (
+            questions.map((question) => {
+              return (
+                <Question
                   key={question.id}
-                  type="button"
-                  onClick={() => selectQuestionForDelete(question)}
+                  content={question.content}
+                  author={question.author}
                 >
-                  <img src={deleteImg} alt="Remover pergunta" />
-                </button>
-              </Question>
-            );
-          })}
+                  <button
+                    key={question.id}
+                    type="button"
+                    onClick={() => selectQuestionForDelete(question)}
+                  >
+                    <img src={deleteImg} alt="Remover pergunta" />
+                  </button>
+                </Question>
+              );
+            })
+          ) : (
+            <EmptyQuestions>
+              <img src={emptyQuestionsImg} alt="Sem perguntas" />
+
+              <strong>Nenhuma pergunta por aqui...</strong>
+
+              <p>
+                Envie o código desta sala para seus amigos e comece a responder
+                perguntas!
+              </p>
+            </EmptyQuestions>
+          )}
         </QuestionList>
 
         {/* Modal */}

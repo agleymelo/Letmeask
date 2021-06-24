@@ -58,3 +58,29 @@ export const RoomTitle = styled.div`
 export const QuestionList = styled.div`
   margin-top: 32px;
 `;
+
+export const EmptyQuestions = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 164px;
+
+  strong {
+    margin-top: 16px;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  p {
+    margin-top: 8px;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    line-height: 21px;
+    color: #737380;
+  }
+`;

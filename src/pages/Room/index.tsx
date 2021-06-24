@@ -1,6 +1,6 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 import logoImg from "../../assets/images/logo.svg";
 import { Button } from "../../components/Button";
@@ -32,9 +32,25 @@ export function Room() {
   const params = useParams<RoomParams>();
   const roomId = params.room_id;
 
-  const { title, questions } = useRoom(roomId);
+  const { title, questions, roomHasClosed } = useRoom(roomId);
 
   const { user } = useAuth();
+
+  const history = useHistory();
+
+  useEffect(() => {
+    const hasLoadedRoomInfo = roomHasClosed !== undefined;
+
+    if (roomHasClosed && hasLoadedRoomInfo) {
+      toast.error("Room already close");
+      history.push("/");
+      return;
+    }
+  }, [history, roomHasClosed]);
+
+  useEffect(() => {
+    document.title = `Letmeask - Sala ${title}`;
+  }, [title]);
 
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault();
