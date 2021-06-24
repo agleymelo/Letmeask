@@ -99,3 +99,7 @@ export const FormFooter = styled.div`
     }
   }
 `;
+
+export const QuestionList = styled.div`
+  margin-top: 32px;
+`;
