@@ -4,13 +4,24 @@ import toast from "react-hot-toast";
 
 import illustrationImg from "../../assets/images/illustration.svg";
 import logoImg from "../../assets/images/logo.svg";
+import logoDarkImg from "../../assets/images/logo-dark.svg";
 import googleIconImg from "../../assets/images/google-icon.svg";
 
 import { Button } from "../../components/Button";
 import { useAuth } from "../../context/Auth";
 import { database } from "../../services/firebase";
 
-import { Container, Aside, Main, MainContent } from "./styles";
+import {
+  Container,
+  Aside,
+  Main,
+  MainContent,
+  MobileContent,
+  ButtonCreateRoom,
+  Separator,
+  Form,
+} from "./styles";
+import { useTheme } from "../../hooks/useTheme";
 
 export function Home() {
   const [roomCode, setRoomCode] = useState("");
@@ -18,6 +29,8 @@ export function Home() {
   const history = useHistory();
 
   const { user, signInWithGoogle } = useAuth();
+
+  const { theme } = useTheme();
 
   async function handleCreateRoom() {
     if (!user) {
@@ -64,21 +77,24 @@ export function Home() {
 
       <Main>
         <MainContent>
-          <img src={logoImg} alt="Letmeask" />
+          <img
+            src={`${theme.title === "light" ? logoImg : logoDarkImg}`}
+            alt="Letmeask"
+          />
 
-          <div className="mobile-text">
+          <MobileContent>
             <strong>Crie salas de Q&amp;A ao-vivo</strong>
             <p>Tire as dúvidas da sua audiência em tempo-real</p>
-          </div>
+          </MobileContent>
 
-          <button className="create-room" onClick={handleCreateRoom}>
+          <ButtonCreateRoom onClick={handleCreateRoom}>
             <img src={googleIconImg} alt="Icone do Google" />
             Crie sua sala com o Google
-          </button>
+          </ButtonCreateRoom>
 
-          <div className="separator">ou entre em uma sala</div>
+          <Separator>ou entre em uma sala</Separator>
 
-          <form onSubmit={handleJoinRoom}>
+          <Form onSubmit={handleJoinRoom}>
             <input
               type="text"
               placeholder="Digite o código da sala"
@@ -86,7 +102,7 @@ export function Home() {
               onChange={(event) => setRoomCode(event.target.value)}
             />
             <Button type="submit">Entrar na sala</Button>
-          </form>
+          </Form>
         </MainContent>
       </Main>
     </Container>

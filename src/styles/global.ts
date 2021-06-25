@@ -8,13 +8,21 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: #f8f8f8;
-    color: #29292e;
-
-    
+    background: ${(props) => props.theme.background?.primary};
+    color: ${(props) => props.theme.colors.text}
   }
 
   body, input, button, textarea {
     font: 400 16px 'Roboto', sans-serif;
+  }
+
+  @media only screen and (min-width: 300px) and (max-width: 450px) {
+    .ReactModal__Content--after-open {
+      top: 0% !important;
+      left: 0% !important;
+      bottom: 0 !important;
+      right: 0 !important;
+
+    }
   }
 `;

@@ -4,8 +4,14 @@ export const Container = styled.button`
   height: 50px;
   border-radius: 8px;
   font-weight: 500;
-  background: #835afd;
-  color: #fff;
+  background: ${({ theme }) =>
+    theme.title === "light"
+      ? theme.text.pink.primary
+      : theme.text.pink.primary};
+  color: ${({ theme }) =>
+    theme.title === "light"
+      ? theme.text.white.primary
+      : theme.text.white.primary};
   padding: 0 32px;
 
   display: flex;
@@ -31,8 +37,12 @@ export const Container = styled.button`
   }
 
   &.outlined {
-    background: #fff;
-    border: 1px solid #835afd;
-    color: #835afd;
+    background: ${({ theme }) =>
+      theme.title === "light" ? theme.text.white.primary : "transparent"};
+    border: 1px solid ${({ theme }) => theme.text.pink.primary};
+    color: ${({ theme }) =>
+      theme.title === "light"
+        ? theme.text.pink.primary
+        : theme.text.white.primary};
   }
 `;

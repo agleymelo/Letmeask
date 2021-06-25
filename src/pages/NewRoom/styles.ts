@@ -7,9 +7,12 @@ export const Container = styled.div`
 `;
 
 export const Aside = styled.aside`
-  flex: 7;
-  background: #835afd;
-  color: #fff;
+  flex: 6;
+  background: ${({ theme }) => theme.text.pink.primary};
+  color: ${({ theme }) =>
+    theme.title === "light"
+      ? theme.text.gray.primary
+      : theme.text.white.primary};
 
   display: flex;
   flex-direction: column;
@@ -31,7 +34,7 @@ export const Aside = styled.aside`
     font-size: 24px;
     line-height: 32px;
     margin-top: 16px;
-    color: #f8f8f8;
+    color: ${({ theme }) => theme.text.white.secondary};
   }
 
   /* Mobile */
@@ -81,7 +84,7 @@ export const Aside = styled.aside`
 `;
 
 export const Main = styled.main`
-  flex: 8;
+  flex: 9;
 
   padding: 0 32px;
 
@@ -102,64 +105,22 @@ export const MainContent = styled.div`
     align-self: center;
   }
 
-  /* Mobile */
-  .mobile-text {
-    display: none;
-
-    @media only screen and (min-width: 300px) and (max-width: 700px) {
-      display: flex;
-
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      strong {
-        font: 700 18px "Poppins", sans-serif;
-        line-height: 42px;
-        margin-top: 16px;
-      }
-
-      p {
-        font-size: 14px;
-        line-height: 26px;
-        margin-top: 8px;
-        color: #a8a8b3;
-      }
-    }
-  }
-
   h2 {
     font-size: 24px;
     margin: 64px 0 24px;
     font-family: "Poppins", sans-serif;
   }
 
-  form {
-    input {
-      height: 50px;
-      border-radius: 8px;
-      padding: 0 16px;
-      background: #fff;
-      border: 1px solid #a8a8b3;
-    }
-
-    button {
-      margin-top: 16px;
-    }
-
-    button,
-    input {
-      width: 100%;
-    }
-  }
-
   p {
     font-size: 14px;
-    color: #737380;
+    color: ${({ theme }) =>
+      theme.title === "light"
+        ? theme.text.gray.primary
+        : theme.text.white.primary};
     margin-top: 16px;
 
     a {
-      color: #e559f9;
+      color: ${({ theme }) => theme.text.pink.primary};
     }
   }
 
@@ -167,5 +128,74 @@ export const MainContent = styled.div`
     h2 {
       margin: 32px 0 16px;
     }
+  }
+`;
+
+export const MobileContent = styled.div`
+  display: none;
+
+  strong {
+    font: 700 16px "Poppins", sans-serif;
+    line-height: 42px;
+    margin-top: 16px;
+  }
+
+  p {
+    font-size: 12px;
+    line-height: 26px;
+    margin-top: 8px;
+    color: ${({ theme }) =>
+      theme.title === "light"
+        ? theme.text.gray.primary
+        : theme.text.white.primary};
+  }
+
+  @media only screen and (min-width: 300px) and (max-width: 700px) {
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media only screen and (max-width: 400px) {
+    strong {
+      font: 700 16px "Poppins", sans-serif;
+      line-height: 42px;
+      margin-top: 16px;
+    }
+
+    p {
+      font-size: 12px;
+      line-height: 26px;
+      margin-top: 8px;
+      color: ${({ theme }) =>
+        theme.title === "light"
+          ? theme.text.gray.primary
+          : theme.text.white.primary};
+    }
+  }
+`;
+
+export const Form = styled.form`
+  input {
+    height: 50px;
+    border-radius: 8px;
+    padding: 0 16px;
+    background: ${({ theme }) => theme.background.primary};
+    border: 1px solid
+      ${({ theme }) =>
+        theme.title === "light"
+          ? theme.text.gray.secondary
+          : theme.text.white.primary};
+  }
+
+  button {
+    margin-top: 16px;
+  }
+
+  button,
+  input {
+    width: 100%;
   }
 `;

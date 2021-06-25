@@ -8,8 +8,11 @@ export const Container = styled.div`
 
 export const Aside = styled.aside`
   flex: 6;
-  background: #835afd;
-  color: #fff;
+  background: ${({ theme }) => theme.text.pink.primary};
+  color: ${({ theme }) =>
+    theme.title === "light"
+      ? theme.text.white.primary
+      : theme.text.white.primary};
 
   display: flex;
   flex-direction: column;
@@ -31,7 +34,7 @@ export const Aside = styled.aside`
     font-size: 24px;
     line-height: 32px;
     margin-top: 16px;
-    color: #f8f8f8;
+    color: ${({ theme }) => theme.text.white.secondary};
   }
 
   /* Mobile */
@@ -105,10 +108,36 @@ export const MainContent = styled.div`
   > img {
     align-self: center;
   }
+`;
 
-  .mobile-text {
-    display: none;
+export const MobileContent = styled.div`
+  display: none;
 
+  strong {
+    font: 700 16px "Poppins", sans-serif;
+    line-height: 42px;
+    margin-top: 16px;
+  }
+
+  p {
+    font-size: 12px;
+    line-height: 26px;
+    margin-top: 8px;
+    color: ${({ theme }) =>
+      theme.title === "light"
+        ? theme.text.gray.primary
+        : theme.text.white.primary};
+  }
+
+  @media only screen and (min-width: 300px) and (max-width: 700px) {
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media only screen and (max-width: 400px) {
     strong {
       font: 700 16px "Poppins", sans-serif;
       line-height: 42px;
@@ -119,115 +148,108 @@ export const MainContent = styled.div`
       font-size: 12px;
       line-height: 26px;
       margin-top: 8px;
-      color: #a8a8b3;
-    }
-
-    @media only screen and (min-width: 300px) and (max-width: 700px) {
-      display: flex;
-
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    @media only screen and (max-width: 400px) {
-      strong {
-        font: 700 16px "Poppins", sans-serif;
-        line-height: 42px;
-        margin-top: 16px;
-      }
-
-      p {
-        font-size: 12px;
-        line-height: 26px;
-        margin-top: 8px;
-        color: #a8a8b3;
-      }
+      color: ${({ theme }) =>
+        theme.title === "light"
+          ? theme.text.gray.primary
+          : theme.text.white.primary};
     }
   }
+`;
 
-  form {
-    input {
-      height: 50px;
-      border-radius: 8px;
-      padding: 0 16px;
-      background: #fff;
-      border: 1px solid #a8a8b3;
-    }
+export const ButtonCreateRoom = styled.button`
+  margin-top: 64px;
+  height: 50px;
+  border-radius: 8px;
+  font-weight: 500;
+  background: ${({ theme }) => theme.text.red.primary};
+  color: ${({ theme }) => theme.text.white.primary};
 
-    button {
-      margin-top: 16px;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    button,
-    input {
-      width: 100%;
-    }
+  cursor: pointer;
+  border: 0;
 
-    @media only screen and (min-width: 300px) and (max-width: 500px) {
-      button {
-        margin-top: 24px;
-        height: 42px;
-      }
-    }
+  transition: filter 0.2s;
+
+  img {
+    margin-right: 8px;
   }
 
-  .create-room {
-    margin-top: 64px;
+  &:hover {
+    filter: brightness(0.9);
+  }
+
+  @media only screen and (min-width: 300px) and (max-width: 700px) {
+    margin-top: 24px;
+  }
+
+  @media only screen and (min-width: 300px) and (max-width: 500px) {
+    font-size: 14px;
+    height: 42px;
+  }
+`;
+
+export const Separator = styled.div`
+  font-size: 14px;
+  color: ${({ theme }) =>
+    theme.title === "light"
+      ? theme.text.gray.secondary
+      : theme.text.white.secondary};
+  padding: 32px 0px;
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: ${({ theme }) =>
+      theme.title === "light"
+        ? theme.text.gray.secondary
+        : theme.text.white.primary};
+    margin-right: 16px;
+  }
+
+  &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: ${({ theme }) =>
+      theme.title === "light"
+        ? theme.text.gray.secondary
+        : theme.text.white.primary};
+    margin-left: 16px;
+  }
+`;
+
+export const Form = styled.form`
+  input {
     height: 50px;
     border-radius: 8px;
-    font-weight: 500;
-    background: #ea4335;
-    color: #fff;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    cursor: pointer;
-    border: 0;
-
-    transition: filter 0.2s;
-
-    img {
-      margin-right: 8px;
-    }
-
-    &:hover {
-      filter: brightness(0.9);
-    }
-
-    @media only screen and (min-width: 300px) and (max-width: 700px) {
-      margin-top: 24px;
-    }
-
-    @media only screen and (min-width: 300px) and (max-width: 500px) {
-      font-size: 14px;
-      height: 42px;
-    }
+    padding: 0 16px;
+    background: ${({ theme }) => theme.background.primary};
+    border: 1px solid
+      ${({ theme }) =>
+        theme.title === "light"
+          ? theme.text.gray.secondary
+          : theme.text.white.primary};
   }
 
-  .separator {
-    font-size: 14px;
-    color: #a8a8b3;
-    padding: 32px 0px;
-    display: flex;
-    align-items: center;
+  button {
+    margin-top: 16px;
+  }
 
-    &::before {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: #a8a8b3;
-      margin-right: 16px;
-    }
+  button,
+  input {
+    width: 100%;
+  }
 
-    &::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: #a8a8b3;
-      margin-left: 16px;
+  @media only screen and (min-width: 300px) and (max-width: 500px) {
+    button {
+      margin-top: 24px;
+      height: 42px;
     }
   }
 `;

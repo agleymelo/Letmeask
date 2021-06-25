@@ -8,11 +8,22 @@ type QuestionProps = {
     name: string;
     avatar: string;
   };
+  isAnswered?: boolean;
+  isHighlighted?: boolean;
 };
 
-export function Question({ content, author, children }: QuestionProps) {
+export function Question({
+  content,
+  author,
+  children,
+  isAnswered = false,
+  isHighlighted = false,
+}: QuestionProps) {
   return (
-    <Container>
+    <Container
+      isAnswered={isAnswered}
+      isHighlighted={isHighlighted && !isAnswered}
+    >
       <p>{content}</p>
 
       <Footer>
@@ -21,7 +32,9 @@ export function Question({ content, author, children }: QuestionProps) {
           <span>{author.name}</span>
         </UserInfo>
 
-        <ContentIcon>{children}</ContentIcon>
+        <ContentIcon>
+          <div>{children}</div>
+        </ContentIcon>
       </Footer>
     </Container>
   );

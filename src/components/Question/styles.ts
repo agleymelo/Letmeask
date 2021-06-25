@@ -1,7 +1,28 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const Container = styled.div`
-  background: #fefefe;
+const answered = css`
+  background: ${({ theme }) => theme.question.answered};
+`;
+
+const highlighted = css`
+  background: ${({ theme }) => theme.question.highlighted};
+  border: 1px solid ${({ theme }) => theme.question.border};
+
+  footer div span {
+    color: ${({ theme }) =>
+      theme.title === "light"
+        ? theme.text.black.primary
+        : theme.text.white.primary};
+  }
+`;
+
+type ContainerProps = {
+  isAnswered: boolean;
+  isHighlighted: boolean;
+};
+
+export const Container = styled.div<ContainerProps>`
+  background: ${({ theme }) => theme.question.default};
   border-radius: 8px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   padding: 24px;
@@ -15,7 +36,19 @@ export const Container = styled.div`
   }
 
   p {
-    color: #29292e;
+    color: ${({ theme }) =>
+      theme.title === "light"
+        ? theme.text.black.primary
+        : theme.text.white.primary};
+  }
+
+  ${({ isHighlighted }) => isHighlighted && highlighted}
+
+  ${({ isAnswered }) => isAnswered && answered}
+
+  @media only screen and (max-width: 768px) {
+    margin-right: 16px;
+    margin-left: 16px;
   }
 `;
 
@@ -39,12 +72,20 @@ export const UserInfo = styled.div`
 
   span {
     margin-left: 8px;
-    color: #737380;
+    color: ${({ theme }) =>
+      theme.title === "light"
+        ? theme.text.gray.primary
+        : theme.text.white.primary};
     font-size: 14px;
   }
 `;
 
 export const ContentIcon = styled.div`
+  > div {
+    display: flex;
+    gap: 16px;
+  }
+
   button {
     border: 0;
     background: transparent;
@@ -54,15 +95,45 @@ export const ContentIcon = styled.div`
     &.like-button {
       display: flex;
       align-items: flex-end;
-      color: #737380;
+      color: ${({ theme }) =>
+        theme.title === "light"
+          ? theme.text.gray.primary
+          : theme.text.white.primary};
       gap: 8px;
 
       &.liked {
-        color: #835afd;
+        color: ${({ theme }) => theme.text.red.primary};
 
         svg path {
-          stroke: #835afd;
+          stroke: ${({ theme }) => theme.text.red.primary};
         }
+      }
+    }
+
+    &:hover {
+      filter: brightness(0.7);
+    }
+
+    &.delete-button {
+      color: ${({ theme }) => theme.text.red.primary};
+
+      svg path {
+        stroke: ${({ theme }) => theme.text.red.primary};
+      }
+    }
+
+    &:hover {
+      filter: brightness(0.7);
+    }
+
+    &.question-highlight-button {
+      color: ${({ theme }) =>
+        theme.title === "light"
+          ? theme.text.pink.primary
+          : theme.text.pink.primary};
+
+      svg path {
+        stroke: ${({ theme }) => theme.text.pink.primary};
       }
     }
 

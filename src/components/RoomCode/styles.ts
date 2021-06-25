@@ -5,15 +5,15 @@ export const Container = styled.button`
   border-radius: 8px;
   overflow: hidden;
 
-  background: #fff;
-  border: 1px solid #835afd;
+  background: ${({ theme }) => theme.background.primary};
+  border: 1px solid ${({ theme }) => theme.text.pink.primary};
   cursor: pointer;
 
   display: flex;
 
   > div {
     height: 100%;
-    background: #835afd;
+    background: ${({ theme }) => theme.text.pink.primary};
     padding: 0 12px;
     display: flex;
     justify-content: center;
@@ -28,5 +28,10 @@ export const Container = styled.button`
     width: 230px;
     font-size: 14px;
     font-weight: 500;
+
+    color: ${({ theme }) =>
+      theme.title === "light"
+        ? theme.text.black.primary
+        : theme.text.white.primary};
   }
 `;

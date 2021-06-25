@@ -3,18 +3,28 @@ import { Link, useHistory } from "react-router-dom";
 
 import illustrationImg from "../../assets/images/illustration.svg";
 import logoImg from "../../assets/images/logo.svg";
+import logoDarkImg from "../../assets/images/logo-dark.svg";
 
 import { Button } from "../../components/Button";
 import { useAuth } from "../../context/Auth";
 
 import { database } from "../../services/firebase";
+import { useTheme } from "../../hooks/useTheme";
 
-import { Container, Aside, Main, MainContent } from "./styles";
+import {
+  Container,
+  Aside,
+  Main,
+  MainContent,
+  MobileContent,
+  Form,
+} from "./styles";
 
 export function NewRoom() {
   const [newRoom, setNewRoom] = useState("");
 
   const { user } = useAuth();
+  const { theme } = useTheme();
 
   const history = useHistory();
 
@@ -48,16 +58,19 @@ export function NewRoom() {
 
       <Main>
         <MainContent>
-          <img src={logoImg} alt="Letmeask" />
+          <img
+            src={`${theme.title === "light" ? logoImg : logoDarkImg}`}
+            alt="Letmeask"
+          />
 
-          <div className="mobile-text">
+          <MobileContent>
             <strong>Crie salas de Q&amp;A ao-vivo</strong>
             <p>Tire as dúvidas da sua audiência em tempo-real</p>
-          </div>
+          </MobileContent>
 
           <h2>Criar uma nova sala</h2>
 
-          <form onSubmit={handleCreateRoom}>
+          <Form onSubmit={handleCreateRoom}>
             <input
               type="text"
               placeholder="Nome da sala"
@@ -65,7 +78,7 @@ export function NewRoom() {
               onChange={(event) => setNewRoom(event.target.value)}
             />
             <Button type="submit">Criar sala</Button>
-          </form>
+          </Form>
 
           <p>
             Quer entrar em uma sala existente? <Link to="/">Clique aqui</Link>
