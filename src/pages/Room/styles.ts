@@ -2,26 +2,13 @@ import styled from "styled-components";
 
 export const Container = styled.div``;
 
-export const Header = styled.header`
-  padding: 24px;
-  border-bottom: 1px solid #e2e2e2;
-`;
-
-export const HeaderContent = styled.div`
-  max-width: 1120px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  > img {
-    max-height: 45px;
-  }
-`;
-
 export const Main = styled.main`
   max-width: 880px;
   margin: 0 auto;
+
+  @media only screen and (min-width: 300px) and (max-width: 768px) {
+    padding: 0 16px;
+  }
 `;
 
 export const RoomTitle = styled.div`
@@ -32,30 +19,70 @@ export const RoomTitle = styled.div`
   h1 {
     font-family: "Poppins", sans-serif;
     font-size: 24px;
-    color: #29292e;
+    color: ${({ theme }) =>
+      theme.title === "light"
+        ? theme.text.gray.third
+        : theme.text.white.primary};
+    margin-left: 16px;
   }
 
   span {
     margin-left: 16px;
-    background: #e559f9;
+    background: ${({ theme }) =>
+      theme.title === "light"
+        ? theme.text.pink.secondary
+        : theme.text.pink.primary};
     border-radius: 9999px;
     padding: 8px 16px;
-    color: #fff;
+    color: ${({ theme }) => theme.text.white.primary};
     font-weight: 500;
     font-size: 14px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    justify-content: center;
+    flex-wrap: wrap;
+
+    h1 {
+      font-size: 16px;
+    }
+
+    span {
+      font-size: 12px;
+    }
+  }
+
+  @media only screen and (min-width: 300px) and (max-width: 450px) {
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 16px;
+
+    h1 {
+      font-size: 14px;
+    }
+
+    span {
+      font-size: 12px;
+    }
   }
 `;
 
 export const Form = styled.form`
+  margin-right: 16px;
+  margin-left: 16px;
   textarea {
     width: 100%;
     border: 0;
     padding: 16px;
     border-radius: 8px;
-    background: #fefefe;
+    background: ${({ theme }) => theme.question.default};
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
     resize: vertical;
     min-height: 130px;
+
+    @media only screen and (min-width: 300px) and (max-width: 768px) {
+      resize: none;
+    }
   }
 `;
 
@@ -77,7 +104,10 @@ export const FormFooter = styled.div`
 
     span {
       margin-left: 8px;
-      color: #29292e;
+      color: ${({ theme }) =>
+        theme.title === "light"
+          ? theme.text.gray.third
+          : theme.text.white.primary};
       font-weight: 500;
       font-size: 14px;
     }
@@ -85,13 +115,16 @@ export const FormFooter = styled.div`
 
   > span {
     font-size: 14px;
-    color: #737388;
+    color: ${({ theme }) =>
+      theme.title === "light"
+        ? theme.text.gray.primary
+        : theme.text.white.primary};
     font-weight: 500;
 
     button {
       background: transparent;
       border: 0;
-      color: #835afd;
+      color: ${({ theme }) => theme.text.pink.primary};
       text-decoration: underline;
       font-size: 14px;
       font-weight: 500;

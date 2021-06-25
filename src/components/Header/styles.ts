@@ -38,6 +38,7 @@ export const ContainerMobile = styled.div`
 type HeaderContentProps = {
   open: boolean;
 };
+
 export const HeaderContent = styled.div<HeaderContentProps>`
   display: flex;
   gap: 16px;

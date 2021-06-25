@@ -27,6 +27,9 @@ export const Container = styled.div<ContainerProps>`
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   padding: 24px;
 
+  margin-right: 8px;
+  margin-left: 8px;
+
   & + div {
     margin-top: 8px;
   }
@@ -47,8 +50,10 @@ export const Container = styled.div<ContainerProps>`
   ${({ isAnswered }) => isAnswered && answered}
 
   @media only screen and (max-width: 768px) {
-    margin-right: 16px;
-    margin-left: 16px;
+    /* padding: 8px 16px; */
+    padding: 24px;
+    margin-right: 8px;
+    margin-left: 8px;
   }
 `;
 
@@ -102,10 +107,10 @@ export const ContentIcon = styled.div`
       gap: 8px;
 
       &.liked {
-        color: ${({ theme }) => theme.text.red.primary};
+        color: ${({ theme }) => theme.text.pink.primary};
 
         svg path {
-          stroke: ${({ theme }) => theme.text.red.primary};
+          stroke: ${({ theme }) => theme.text.pink.primary};
         }
       }
     }

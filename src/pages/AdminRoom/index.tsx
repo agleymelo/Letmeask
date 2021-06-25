@@ -75,7 +75,7 @@ export function AdminRoom() {
 
     if (!isAuthor && hasLoadedRoom) {
       toast.error("You are not the creator of the room.");
-      history.push(`/room/${roomId}`);
+      history.push(`/rooms/${roomId}`);
       return;
     }
   }, [history, isAuthor, roomHasClosed, roomId]);

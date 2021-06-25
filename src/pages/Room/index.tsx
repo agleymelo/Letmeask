@@ -2,10 +2,10 @@ import { FormEvent, useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { useHistory, useParams } from "react-router-dom";
 
-import logoImg from "../../assets/images/logo.svg";
 import { Button } from "../../components/Button";
 import { RoomCode } from "../../components/RoomCode";
 import { Question } from "../../components/Question";
+import { Header } from "../../components/Header";
 import { database } from "../../services/firebase";
 
 import { useAuth } from "../../context/Auth";
@@ -13,8 +13,6 @@ import { useRoom } from "../../hooks/useRoom";
 
 import {
   Container,
-  Header,
-  HeaderContent,
   Main,
   RoomTitle,
   Form,
@@ -97,10 +95,7 @@ export function Room() {
   return (
     <Container>
       <Header>
-        <HeaderContent>
-          <img src={logoImg} alt="Letmeask" />
-          <RoomCode code={roomId} />
-        </HeaderContent>
+        <RoomCode code={roomId} />
       </Header>
 
       <Main>

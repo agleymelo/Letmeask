@@ -8,8 +8,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: ${(props) => props.theme.background?.primary};
-    color: ${(props) => props.theme.colors.text}
+    background: ${({ theme }) => theme.background.primary};
+    color: ${({ theme }) => theme.text.gray.primary}
   }
 
   body, input, button, textarea {
