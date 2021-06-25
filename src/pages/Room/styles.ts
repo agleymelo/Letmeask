@@ -21,7 +21,7 @@ export const RoomTitle = styled.div`
     font-size: 24px;
     color: ${({ theme }) =>
       theme.title === "light"
-        ? theme.text.gray.third
+        ? theme.text.white.primary
         : theme.text.white.primary};
     margin-left: 16px;
   }

@@ -80,6 +80,11 @@ export const EmptyQuestions = styled.div`
     font-family: "Poppins", sans-serif;
     font-size: 18px;
     line-height: 28px;
+
+    color: ${({ theme }) =>
+      theme.title === "light"
+        ? theme.text.gray.secondary
+        : theme.text.white.primary};
   }
 
   p {
