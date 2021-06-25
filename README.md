@@ -40,8 +40,7 @@ You can view the project layout through [this link](https://www.figma.com/file/u
 
 - Clone the repository
 - Install dependencies with `yarn`
-- Start fake api with `yarn server`
-- Start the server with `yarn dev`
+- Start the server with `yarn start`
 
 ## 📷 Prints
 
