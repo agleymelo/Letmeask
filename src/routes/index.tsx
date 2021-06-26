@@ -5,7 +5,7 @@ import { NewRoom } from '../pages/NewRoom'
 import { Room } from '../pages/Room'
 import { AdminRoom } from '../pages/AdminRoom'
 
-export function Routes() {
+export function Routes(): JSX.Element {
   return (
     <Switch>
       <Route path="/" exact component={Home} />

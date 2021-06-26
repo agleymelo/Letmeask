@@ -89,7 +89,7 @@ export function AuthContextProvider({
   )
 }
 
-export function useAuth() {
+export function useAuth(): AuthContextType {
   const context = useContext(AuthContext)
 
   return context
