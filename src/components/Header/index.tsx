@@ -1,16 +1,16 @@
-import { ReactNode, useState } from "react";
-import { useHistory } from "react-router-dom";
-import toast from "react-hot-toast";
+import { ReactNode, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
-import logoImg from "../../assets/images/logo.svg";
-import logoDarkImg from "../../assets/images/logo-dark.svg";
+import logoImg from '../../assets/images/logo.svg'
+import logoDarkImg from '../../assets/images/logo-dark.svg'
 
-import sunImg from "../../assets/images/sun.svg";
-import moonImg from "../../assets/images/moon.svg";
+import sunImg from '../../assets/images/sun.svg'
+import moonImg from '../../assets/images/moon.svg'
 
-import { useTheme } from "../../hooks/useTheme";
+import { useTheme } from '../../hooks/useTheme'
 
-import { useAuth } from "../../context/Auth";
+import { useAuth } from '../../context/Auth'
 
 import {
   Container,
@@ -18,41 +18,41 @@ import {
   HeaderContent,
   ButtonSignOut,
   ContainerMobile,
-  Burger,
-} from "./styles";
+  Burger
+} from './styles'
 
 interface HeaderProps {
-  children?: ReactNode;
+  children?: ReactNode
 }
 
-export function Header({ children }: HeaderProps) {
-  const [open, setOpen] = useState(false);
+export function Header({ children }: HeaderProps): JSX.Element {
+  const [open, setOpen] = useState(false)
 
-  const { toggleTheme, theme } = useTheme();
+  const { toggleTheme, theme } = useTheme()
 
-  const { signOut } = useAuth();
+  const { signOut } = useAuth()
 
-  const history = useHistory();
+  const history = useHistory()
 
   async function handleSignOut() {
-    await signOut();
+    await signOut()
 
-    toast.success("successfully logged out");
+    toast.success('successfully logged out')
 
-    history.push("/");
+    history.push('/')
   }
 
   return (
     <Container>
       <HeaderContainer>
         <img
-          src={`${theme.title === "light" ? logoImg : logoDarkImg}`}
+          src={`${theme.title === 'light' ? logoImg : logoDarkImg}`}
           alt="Letmeask"
         />
 
         <ContainerMobile>
           <div onClick={toggleTheme}>
-            {theme.title === "light" ? (
+            {theme.title === 'light' ? (
               <img src={sunImg} alt="Icone do Tema Claro" />
             ) : (
               <img src={moonImg} alt="Icone do Tema Escuro" />
@@ -74,7 +74,7 @@ export function Header({ children }: HeaderProps) {
           </ButtonSignOut>
 
           <div className="switch-theme" onClick={toggleTheme}>
-            {theme.title === "light" ? (
+            {theme.title === 'light' ? (
               <img src={sunImg} alt="Icone do Tema Claro" />
             ) : (
               <img src={moonImg} alt="Icone do Tema Escuro" />
@@ -83,5 +83,5 @@ export function Header({ children }: HeaderProps) {
         </HeaderContent>
       </HeaderContainer>
     </Container>
-  );
+  )
 }

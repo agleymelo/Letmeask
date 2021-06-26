@@ -1,40 +1,39 @@
-import { DefaultTheme } from "styled-components";
+import { DefaultTheme } from 'styled-components'
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  title: "dark",
+  title: 'dark',
 
   text: {
     white: {
-      primary: "#fff",
-      secondary: "#f8f8f8",
+      primary: '#fff',
+      secondary: '#f8f8f8'
     },
     gray: {
-      primary: "",
+      primary: '',
       secondary: null,
       third: null,
-      four: null,
+      four: null
     },
     red: {
-      primary: "#E73F5D",
+      primary: '#E73F5D'
     },
     pink: {
-      primary: "#835afd",
-      secondary: "#E559F9",
+      primary: '#835afd',
+      secondary: '#E559F9'
     },
     black: {
-      primary: "#000",
-    },
+      primary: '#000'
+    }
   },
 
   question: {
-    default: "#282828",
-    highlighted: "#181818",
-    answered: "#121212",
-    border: "#FFF",
+    default: '#282828',
+    highlighted: '#181818',
+    answered: '#121212',
+    border: '#FFF'
   },
 
   background: {
-    primary: "#222",
-  },
-} as DefaultTheme;
+    primary: '#222'
+  }
+} as DefaultTheme

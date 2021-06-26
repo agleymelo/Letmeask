@@ -1,8 +1,8 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components'
 
 const answered = css`
   background: ${({ theme }) => theme.question.answered};
-`;
+`
 
 const highlighted = css`
   background: ${({ theme }) => theme.question.highlighted};
@@ -10,16 +10,16 @@ const highlighted = css`
 
   footer div span {
     color: ${({ theme }) =>
-      theme.title === "light"
+      theme.title === 'light'
         ? theme.text.black.primary
         : theme.text.white.primary};
   }
-`;
+`
 
 type ContainerProps = {
-  isAnswered: boolean;
-  isHighlighted: boolean;
-};
+  isAnswered: boolean
+  isHighlighted: boolean
+}
 
 export const Container = styled.div<ContainerProps>`
   background: ${({ theme }) => theme.question.default};
@@ -40,7 +40,7 @@ export const Container = styled.div<ContainerProps>`
 
   p {
     color: ${({ theme }) =>
-      theme.title === "light"
+      theme.title === 'light'
         ? theme.text.black.primary
         : theme.text.white.primary};
   }
@@ -55,7 +55,7 @@ export const Container = styled.div<ContainerProps>`
     margin-right: 8px;
     margin-left: 8px;
   }
-`;
+`
 
 export const Footer = styled.footer`
   display: flex;
@@ -63,7 +63,7 @@ export const Footer = styled.footer`
   align-items: center;
 
   margin-top: 24px;
-`;
+`
 
 export const UserInfo = styled.div`
   display: flex;
@@ -78,12 +78,12 @@ export const UserInfo = styled.div`
   span {
     margin-left: 8px;
     color: ${({ theme }) =>
-      theme.title === "light"
+      theme.title === 'light'
         ? theme.text.gray.primary
         : theme.text.white.primary};
     font-size: 14px;
   }
-`;
+`
 
 export const ContentIcon = styled.div`
   > div {
@@ -101,7 +101,7 @@ export const ContentIcon = styled.div`
       display: flex;
       align-items: flex-end;
       color: ${({ theme }) =>
-        theme.title === "light"
+        theme.title === 'light'
           ? theme.text.gray.primary
           : theme.text.white.primary};
       gap: 8px;
@@ -133,7 +133,7 @@ export const ContentIcon = styled.div`
 
     &.question-highlight-button {
       color: ${({ theme }) =>
-        theme.title === "light"
+        theme.title === 'light'
           ? theme.text.pink.primary
           : theme.text.pink.primary};
 
@@ -146,4 +146,4 @@ export const ContentIcon = styled.div`
       filter: brightness(0.7);
     }
   }
-`;
+`

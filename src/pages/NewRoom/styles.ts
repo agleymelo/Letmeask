@@ -1,16 +1,16 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
   align-items: stretch;
   height: 100vh;
-`;
+`
 
 export const Aside = styled.aside`
   flex: 6;
   background: ${({ theme }) => theme.text.pink.primary};
   color: ${({ theme }) =>
-    theme.title === "light"
+    theme.title === 'light'
       ? theme.text.gray.primary
       : theme.text.white.primary};
 
@@ -25,7 +25,7 @@ export const Aside = styled.aside`
   }
 
   strong {
-    font: 700 36px "Poppins", sans-serif;
+    font: 700 36px 'Poppins', sans-serif;
     line-height: 42px;
     margin-top: 16px;
   }
@@ -81,7 +81,7 @@ export const Aside = styled.aside`
   @media only screen and (max-width: 700px) {
     display: none;
   }
-`;
+`
 
 export const Main = styled.main`
   flex: 9;
@@ -91,7 +91,7 @@ export const Main = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
+`
 
 export const MainContent = styled.div`
   display: flex;
@@ -108,13 +108,13 @@ export const MainContent = styled.div`
   h2 {
     font-size: 24px;
     margin: 64px 0 24px;
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
 
   p {
     font-size: 14px;
     color: ${({ theme }) =>
-      theme.title === "light"
+      theme.title === 'light'
         ? theme.text.gray.primary
         : theme.text.white.primary};
     margin-top: 16px;
@@ -129,13 +129,13 @@ export const MainContent = styled.div`
       margin: 32px 0 16px;
     }
   }
-`;
+`
 
 export const MobileContent = styled.div`
   display: none;
 
   strong {
-    font: 700 16px "Poppins", sans-serif;
+    font: 700 16px 'Poppins', sans-serif;
     line-height: 42px;
     margin-top: 16px;
   }
@@ -145,7 +145,7 @@ export const MobileContent = styled.div`
     line-height: 26px;
     margin-top: 8px;
     color: ${({ theme }) =>
-      theme.title === "light"
+      theme.title === 'light'
         ? theme.text.gray.primary
         : theme.text.white.primary};
   }
@@ -160,7 +160,7 @@ export const MobileContent = styled.div`
 
   @media only screen and (max-width: 400px) {
     strong {
-      font: 700 16px "Poppins", sans-serif;
+      font: 700 16px 'Poppins', sans-serif;
       line-height: 42px;
       margin-top: 16px;
     }
@@ -170,12 +170,12 @@ export const MobileContent = styled.div`
       line-height: 26px;
       margin-top: 8px;
       color: ${({ theme }) =>
-        theme.title === "light"
+        theme.title === 'light'
           ? theme.text.gray.primary
           : theme.text.white.primary};
     }
   }
-`;
+`
 
 export const Form = styled.form`
   input {
@@ -185,7 +185,7 @@ export const Form = styled.form`
     background: ${({ theme }) => theme.background.primary};
     border: 1px solid
       ${({ theme }) =>
-        theme.title === "light"
+        theme.title === 'light'
           ? theme.text.gray.secondary
           : theme.text.white.primary};
   }
@@ -198,4 +198,4 @@ export const Form = styled.form`
   input {
     width: 100%;
   }
-`;
+`

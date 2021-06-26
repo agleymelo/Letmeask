@@ -1,16 +1,16 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
   align-items: stretch;
   height: 100vh;
-`;
+`
 
 export const Aside = styled.aside`
   flex: 6;
   background: ${({ theme }) => theme.text.pink.primary};
   color: ${({ theme }) =>
-    theme.title === "light"
+    theme.title === 'light'
       ? theme.text.white.primary
       : theme.text.white.primary};
 
@@ -25,7 +25,7 @@ export const Aside = styled.aside`
   }
 
   strong {
-    font: 700 36px "Poppins", sans-serif;
+    font: 700 36px 'Poppins', sans-serif;
     line-height: 42px;
     margin-top: 16px;
   }
@@ -81,7 +81,7 @@ export const Aside = styled.aside`
   @media only screen and (max-width: 700px) {
     display: none;
   }
-`;
+`
 
 export const Main = styled.main`
   flex: 9;
@@ -95,7 +95,7 @@ export const Main = styled.main`
   @media only screen and (min-width: 300px) and (max-width: 700px) {
     flex: 1;
   }
-`;
+`
 
 export const MainContent = styled.div`
   display: flex;
@@ -108,13 +108,13 @@ export const MainContent = styled.div`
   > img {
     align-self: center;
   }
-`;
+`
 
 export const MobileContent = styled.div`
   display: none;
 
   strong {
-    font: 700 16px "Poppins", sans-serif;
+    font: 700 16px 'Poppins', sans-serif;
     line-height: 42px;
     margin-top: 16px;
   }
@@ -124,7 +124,7 @@ export const MobileContent = styled.div`
     line-height: 26px;
     margin-top: 8px;
     color: ${({ theme }) =>
-      theme.title === "light"
+      theme.title === 'light'
         ? theme.text.gray.primary
         : theme.text.white.primary};
   }
@@ -139,7 +139,7 @@ export const MobileContent = styled.div`
 
   @media only screen and (max-width: 400px) {
     strong {
-      font: 700 16px "Poppins", sans-serif;
+      font: 700 16px 'Poppins', sans-serif;
       line-height: 42px;
       margin-top: 16px;
     }
@@ -149,12 +149,12 @@ export const MobileContent = styled.div`
       line-height: 26px;
       margin-top: 8px;
       color: ${({ theme }) =>
-        theme.title === "light"
+        theme.title === 'light'
           ? theme.text.gray.primary
           : theme.text.white.primary};
     }
   }
-`;
+`
 
 export const ButtonCreateRoom = styled.button`
   margin-top: 64px;
@@ -189,12 +189,12 @@ export const ButtonCreateRoom = styled.button`
     font-size: 14px;
     height: 42px;
   }
-`;
+`
 
 export const Separator = styled.div`
   font-size: 14px;
   color: ${({ theme }) =>
-    theme.title === "light"
+    theme.title === 'light'
       ? theme.text.gray.secondary
       : theme.text.white.secondary};
   padding: 32px 0px;
@@ -202,27 +202,27 @@ export const Separator = styled.div`
   align-items: center;
 
   &::before {
-    content: "";
+    content: '';
     flex: 1;
     height: 1px;
     background: ${({ theme }) =>
-      theme.title === "light"
+      theme.title === 'light'
         ? theme.text.gray.secondary
         : theme.text.white.primary};
     margin-right: 16px;
   }
 
   &::after {
-    content: "";
+    content: '';
     flex: 1;
     height: 1px;
     background: ${({ theme }) =>
-      theme.title === "light"
+      theme.title === 'light'
         ? theme.text.gray.secondary
         : theme.text.white.primary};
     margin-left: 16px;
   }
-`;
+`
 
 export const Form = styled.form`
   input {
@@ -232,7 +232,7 @@ export const Form = styled.form`
     background: ${({ theme }) => theme.background.primary};
     border: 1px solid
       ${({ theme }) =>
-        theme.title === "light"
+        theme.title === 'light'
           ? theme.text.gray.secondary
           : theme.text.white.primary};
   }
@@ -252,4 +252,4 @@ export const Form = styled.form`
       height: 42px;
     }
   }
-`;
+`

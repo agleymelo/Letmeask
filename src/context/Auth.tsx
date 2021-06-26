@@ -3,94 +3,94 @@ import {
   ReactNode,
   useState,
   useEffect,
-  useContext,
-} from "react";
-import toast from "react-hot-toast";
+  useContext
+} from 'react'
+import toast from 'react-hot-toast'
 
-import { firebase, auth } from "../services/firebase";
+import { firebase, auth } from '../services/firebase'
 
 type User = {
-  id: string;
-  name: string;
-  avatar: string;
-};
+  id: string
+  name: string
+  avatar: string
+}
 
 type AuthContextType = {
-  user: User | undefined;
-  signInWithGoogle: () => Promise<void>;
-  signOut: () => Promise<void>;
-};
+  user: User | undefined
+  signInWithGoogle: () => Promise<void>
+  signOut: () => Promise<void>
+}
 
-export const AuthContext = createContext<AuthContextType>(
-  {} as AuthContextType
-);
+export const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 
 type AuthContextProviderProps = {
-  children: ReactNode;
-};
+  children: ReactNode
+}
 
-export function AuthContextProvider({ children }: AuthContextProviderProps) {
-  const [user, setUser] = useState<User>();
+export function AuthContextProvider({
+  children
+}: AuthContextProviderProps): JSX.Element {
+  const [user, setUser] = useState<User>()
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
-        const { displayName, photoURL, uid } = user;
+        const { displayName, photoURL, uid } = user
 
         if (!displayName || !photoURL) {
-          toast.error("Missing information from Google Account.");
-          return;
+          toast.error('Missing information from Google Account.')
+          return
         }
 
         setUser({
           id: uid,
           name: displayName,
-          avatar: photoURL,
-        });
+          avatar: photoURL
+        })
       }
-    });
+    })
 
     return () => {
-      unsubscribe();
-    };
-  }, []);
+      unsubscribe()
+    }
+  }, [])
 
   async function signInWithGoogle() {
-    const provider = new firebase.auth.GoogleAuthProvider();
+    const provider = new firebase.auth.GoogleAuthProvider()
 
-    const result = await auth.signInWithPopup(provider);
+    const result = await auth.signInWithPopup(provider)
 
     if (result.user) {
-      const { displayName, photoURL, uid } = result.user;
+      const { displayName, photoURL, uid } = result.user
 
       if (!displayName || !photoURL) {
-        toast.error("Missing information from Google Account.");
-        return;
+        toast.error('Missing information from Google Account.')
+        return
       }
 
       setUser({
         id: uid,
         name: displayName,
-        avatar: photoURL,
-      });
+        avatar: photoURL
+      })
     }
   }
 
   async function signOut() {
-    await auth.signOut();
+    await auth.signOut()
 
-    setUser(undefined);
+    setUser(undefined)
   }
 
   return (
     <AuthContext.Provider value={{ user, signInWithGoogle, signOut }}>
       {children}
     </AuthContext.Provider>
-  );
+  )
 }
 
 export function useAuth() {
-  const context = useContext(AuthContext);
+  const context = useContext(AuthContext)
 
-  return context;
+  return context
 }

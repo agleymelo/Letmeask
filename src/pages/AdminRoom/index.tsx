@@ -1,21 +1,21 @@
-import { Fragment, useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
-import { toast } from "react-hot-toast";
-import Modal from "react-modal";
+import { Fragment, useEffect, useState } from 'react'
+import { useHistory, useParams } from 'react-router-dom'
+import { toast } from 'react-hot-toast'
+import Modal from 'react-modal'
 
-import emptyQuestionsImg from "../../assets/images/empty-questions.svg";
-import closeImg from "../../assets/images/close.svg";
-import trashImg from "../../assets/images/trash.svg";
+import emptyQuestionsImg from '../../assets/images/empty-questions.svg'
+import closeImg from '../../assets/images/close.svg'
+import trashImg from '../../assets/images/trash.svg'
 
-import { Button } from "../../components/Button";
-import { RoomCode } from "../../components/RoomCode";
-import { Question } from "../../components/Question";
-import { Header } from "../../components/Header";
+import { Button } from '../../components/Button'
+import { RoomCode } from '../../components/RoomCode'
+import { Question } from '../../components/Question'
+import { Header } from '../../components/Header'
 
-import { useRoom } from "../../hooks/useRoom";
-import { useTheme } from "../../hooks/useTheme";
+import { useRoom } from '../../hooks/useRoom'
+import { useTheme } from '../../hooks/useTheme'
 
-import { database } from "../../services/firebase";
+import { database } from '../../services/firebase'
 
 import {
   Container,
@@ -25,93 +25,92 @@ import {
   EmptyQuestions,
   ContainerModal,
   ContentMain,
-  Buttons,
-} from "./styles";
+  Buttons
+} from './styles'
 
 type RoomParams = {
-  room_id: string;
-};
+  room_id: string
+}
 
-export function AdminRoom() {
-  const params = useParams<RoomParams>();
-  const roomId = params.room_id;
+export function AdminRoom(): JSX.Element {
+  const params = useParams<RoomParams>()
+  const roomId = params.room_id
 
-  const history = useHistory();
+  const history = useHistory()
 
-  const { title, questions, isAuthor, roomHasClosed } = useRoom(roomId);
+  const { title, questions, isAuthor, roomHasClosed } = useRoom(roomId)
 
-  const { theme } = useTheme();
+  const { theme } = useTheme()
 
   const [questionIdModalOpen, setQuestionIdModalOpen] = useState<
     string | undefined
-  >(undefined);
+  >(undefined)
 
-  const [endedRoomModal, setEndedRoomModal] = useState(false);
+  const [endedRoomModal, setEndedRoomModal] = useState(false)
 
   const styleModal = {
     content: {
-      minWidth: "320px",
-      maxWidth: "590px",
-      width: "100%",
-      height: "424px",
-      margin: "auto",
-      padding: "8px",
-      borderRadius: "8px",
+      minWidth: '320px',
+      maxWidth: '590px',
+      width: '100%',
+      height: '424px',
+      margin: 'auto',
+      padding: '8px',
+      borderRadius: '8px',
       background: `${theme.background?.primary}`,
-      border: "0",
+      border: '0'
     },
     overlay: {
-      background: "rgba(0,0,0,0.4)",
-    },
-  };
+      background: 'rgba(0,0,0,0.4)'
+    }
+  }
 
   useEffect(() => {
-    const hasLoadedRoom = isAuthor !== undefined && roomHasClosed !== undefined;
+    const hasLoadedRoom = isAuthor !== undefined && roomHasClosed !== undefined
 
     if (roomHasClosed && hasLoadedRoom) {
-      history.push("/");
-      return;
+      history.push('/')
+      return
     }
 
     if (!isAuthor && hasLoadedRoom) {
-      toast.error("You are not the creator of the room.");
-      history.push(`/rooms/${roomId}`);
-      return;
+      toast.error('You are not the creator of the room.')
+      history.push(`/rooms/${roomId}`)
     }
-  }, [history, isAuthor, roomHasClosed, roomId]);
+  }, [history, isAuthor, roomHasClosed, roomId])
 
   useEffect(() => {
-    document.title = `Letmeask - Sala ${title}`;
-  }, [title]);
+    document.title = `Letmeask - Sala ${title}`
+  }, [title])
 
   async function handleEndRoom() {
     await database.ref(`rooms/${roomId}`).update({
-      endedAt: new Date(),
-    });
+      endedAt: new Date()
+    })
 
-    history.push("/");
+    history.push('/')
 
-    toast.success("Room closed successfully");
+    toast.success('Room closed successfully')
   }
 
   async function handleDeleteQuestion(questionId: string | undefined) {
-    setQuestionIdModalOpen(undefined);
+    setQuestionIdModalOpen(undefined)
 
-    await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
+    await database.ref(`rooms/${roomId}/questions/${questionId}`).remove()
 
-    toast.success("Question deleted successfully");
+    toast.success('Question deleted successfully')
   }
 
   async function handleCheckQuestionAsAnswered(questionId: string) {
     await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
-      isAnswered: true,
-    });
+      isAnswered: true
+    })
   }
 
   async function handleHighlightQuestion(questionId: string) {
     await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
-      isHighlighted: true,
-    });
+      isHighlighted: true
+    })
   }
 
   return (
@@ -132,7 +131,7 @@ export function AdminRoom() {
 
         <QuestionList>
           {questions.length > 0 ? (
-            questions.map((question) => {
+            questions.map(question => {
               return (
                 <Fragment key={question.id}>
                   <Question
@@ -268,7 +267,7 @@ export function AdminRoom() {
                     </ContainerModal>
                   </Modal>
                 </Fragment>
-              );
+              )
             })
           ) : (
             <EmptyQuestions>
@@ -309,5 +308,5 @@ export function AdminRoom() {
         </ContainerModal>
       </Modal>
     </Container>
-  );
+  )
 }

@@ -1,12 +1,12 @@
-import { BrowserRouter } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
+import { BrowserRouter } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
 
-import { ThemeContextProvider } from "./context/ThemeContext";
-import { AuthContextProvider } from "./context/Auth";
-import { Routes } from "./routes";
-import { GlobalStyle } from "./styles/global";
+import { ThemeContextProvider } from './context/ThemeContext'
+import { AuthContextProvider } from './context/Auth'
+import { Routes } from './routes'
+import { GlobalStyle } from './styles/global'
 
-function App() {
+function App(): JSX.Element {
   return (
     <ThemeContextProvider>
       <BrowserRouter>
@@ -17,7 +17,7 @@ function App() {
         </AuthContextProvider>
       </BrowserRouter>
     </ThemeContextProvider>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -1,15 +1,16 @@
-import { FormEvent, useState } from "react";
-import { useHistory } from "react-router-dom";
-import toast from "react-hot-toast";
+import { FormEvent, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
-import illustrationImg from "../../assets/images/illustration.svg";
-import logoImg from "../../assets/images/logo.svg";
-import logoDarkImg from "../../assets/images/logo-dark.svg";
-import googleIconImg from "../../assets/images/google-icon.svg";
+import illustrationImg from '../../assets/images/illustration.svg'
+import logoImg from '../../assets/images/logo.svg'
+import logoDarkImg from '../../assets/images/logo-dark.svg'
+import googleIconImg from '../../assets/images/google-icon.svg'
 
-import { Button } from "../../components/Button";
-import { useAuth } from "../../context/Auth";
-import { database } from "../../services/firebase";
+import { Button } from '../../components/Button'
+import { useAuth } from '../../context/Auth'
+import { database } from '../../services/firebase'
+import { useTheme } from '../../hooks/useTheme'
 
 import {
   Container,
@@ -19,49 +20,48 @@ import {
   MobileContent,
   ButtonCreateRoom,
   Separator,
-  Form,
-} from "./styles";
-import { useTheme } from "../../hooks/useTheme";
+  Form
+} from './styles'
 
-export function Home() {
-  const [roomCode, setRoomCode] = useState("");
+export function Home(): JSX.Element {
+  const [roomCode, setRoomCode] = useState('')
 
-  const history = useHistory();
+  const history = useHistory()
 
-  const { user, signInWithGoogle } = useAuth();
+  const { user, signInWithGoogle } = useAuth()
 
-  const { theme } = useTheme();
+  const { theme } = useTheme()
 
   async function handleCreateRoom() {
     if (!user) {
-      await signInWithGoogle();
+      await signInWithGoogle()
     }
 
-    history.push("/rooms/new");
+    history.push('/rooms/new')
   }
 
   async function handleJoinRoom(event: FormEvent) {
-    event.preventDefault();
+    event.preventDefault()
 
-    if (roomCode.trim() === "") {
-      return;
+    if (roomCode.trim() === '') {
+      return
     }
 
-    const roomRef = await database.ref(`rooms/${roomCode}`).get();
+    const roomRef = await database.ref(`rooms/${roomCode}`).get()
 
     if (!roomRef.exists()) {
-      toast.error("Room does not exists.");
-      return;
+      toast.error('Room does not exists.')
+      return
     }
 
     if (roomRef.val().endedAt) {
-      toast.error("Room already closed.");
-      return;
+      toast.error('Room already closed.')
+      return
     }
 
-    toast.success("Entering the room...");
+    toast.success('Entering the room...')
 
-    history.push(`/rooms/${roomCode}`);
+    history.push(`/rooms/${roomCode}`)
   }
 
   return (
@@ -78,7 +78,7 @@ export function Home() {
       <Main>
         <MainContent>
           <img
-            src={`${theme.title === "light" ? logoImg : logoDarkImg}`}
+            src={`${theme.title === 'light' ? logoImg : logoDarkImg}`}
             alt="Letmeask"
           />
 
@@ -99,12 +99,12 @@ export function Home() {
               type="text"
               placeholder="Digite o código da sala"
               value={roomCode}
-              onChange={(event) => setRoomCode(event.target.value)}
+              onChange={event => setRoomCode(event.target.value)}
             />
             <Button type="submit">Entrar na sala</Button>
           </Form>
         </MainContent>
       </Main>
     </Container>
-  );
+  )
 }

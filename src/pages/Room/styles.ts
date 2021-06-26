@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
-export const Container = styled.div``;
+export const Container = styled.div``
 
 export const Main = styled.main`
   max-width: 880px;
@@ -9,7 +9,7 @@ export const Main = styled.main`
   @media only screen and (min-width: 300px) and (max-width: 768px) {
     padding: 0 16px;
   }
-`;
+`
 
 export const RoomTitle = styled.div`
   margin: 32px 0 24px;
@@ -17,10 +17,10 @@ export const RoomTitle = styled.div`
   align-items: center;
 
   h1 {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 24px;
     color: ${({ theme }) =>
-      theme.title === "light"
+      theme.title === 'light'
         ? theme.text.white.primary
         : theme.text.white.primary};
     margin-left: 16px;
@@ -29,7 +29,7 @@ export const RoomTitle = styled.div`
   span {
     margin-left: 16px;
     background: ${({ theme }) =>
-      theme.title === "light"
+      theme.title === 'light'
         ? theme.text.pink.secondary
         : theme.text.pink.primary};
     border-radius: 9999px;
@@ -65,7 +65,7 @@ export const RoomTitle = styled.div`
       font-size: 12px;
     }
   }
-`;
+`
 
 export const Form = styled.form`
   margin-right: 16px;
@@ -84,7 +84,7 @@ export const Form = styled.form`
       resize: none;
     }
   }
-`;
+`
 
 export const FormFooter = styled.div`
   display: flex;
@@ -105,7 +105,7 @@ export const FormFooter = styled.div`
     span {
       margin-left: 8px;
       color: ${({ theme }) =>
-        theme.title === "light"
+        theme.title === 'light'
           ? theme.text.gray.third
           : theme.text.white.primary};
       font-weight: 500;
@@ -116,7 +116,7 @@ export const FormFooter = styled.div`
   > span {
     font-size: 14px;
     color: ${({ theme }) =>
-      theme.title === "light"
+      theme.title === 'light'
         ? theme.text.gray.primary
         : theme.text.white.primary};
     font-weight: 500;
@@ -131,8 +131,8 @@ export const FormFooter = styled.div`
       cursor: pointer;
     }
   }
-`;
+`
 
 export const QuestionList = styled.div`
   margin-top: 32px;
-`;
+`

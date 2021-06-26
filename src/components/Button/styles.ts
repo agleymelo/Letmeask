@@ -1,15 +1,15 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.button`
   height: 50px;
   border-radius: 8px;
   font-weight: 500;
   background: ${({ theme }) =>
-    theme.title === "light"
+    theme.title === 'light'
       ? theme.text.pink.primary
       : theme.text.pink.primary};
   color: ${({ theme }) =>
-    theme.title === "light"
+    theme.title === 'light'
       ? theme.text.white.primary
       : theme.text.white.primary};
   padding: 0 32px;
@@ -38,11 +38,11 @@ export const Container = styled.button`
 
   &.outlined {
     background: ${({ theme }) =>
-      theme.title === "light" ? theme.text.white.primary : "transparent"};
+      theme.title === 'light' ? theme.text.white.primary : 'transparent'};
     border: 1px solid ${({ theme }) => theme.text.pink.primary};
     color: ${({ theme }) =>
-      theme.title === "light"
+      theme.title === 'light'
         ? theme.text.pink.primary
         : theme.text.white.primary};
   }
-`;
+`

@@ -1,24 +1,24 @@
-import { ReactNode } from "react";
-import { Container, Footer, UserInfo, ContentIcon } from "./styles";
+import { ReactNode } from 'react'
+import { Container, Footer, UserInfo, ContentIcon } from './styles'
 
 type QuestionProps = {
-  children?: ReactNode;
-  content: string;
+  children?: ReactNode
+  content: string
   author: {
-    name: string;
-    avatar: string;
-  };
-  isAnswered?: boolean;
-  isHighlighted?: boolean;
-};
+    name: string
+    avatar: string
+  }
+  isAnswered?: boolean
+  isHighlighted?: boolean
+}
 
 export function Question({
   content,
   author,
   children,
   isAnswered = false,
-  isHighlighted = false,
-}: QuestionProps) {
+  isHighlighted = false
+}: QuestionProps): JSX.Element {
   return (
     <Container
       isAnswered={isAnswered}
@@ -37,5 +37,5 @@ export function Question({
         </ContentIcon>
       </Footer>
     </Container>
-  );
+  )
 }

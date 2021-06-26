@@ -1,15 +1,15 @@
-import { FormEvent, useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { useHistory, useParams } from "react-router-dom";
+import { FormEvent, useState, useEffect } from 'react'
+import toast from 'react-hot-toast'
+import { useHistory, useParams } from 'react-router-dom'
 
-import { Button } from "../../components/Button";
-import { RoomCode } from "../../components/RoomCode";
-import { Question } from "../../components/Question";
-import { Header } from "../../components/Header";
-import { database } from "../../services/firebase";
+import { Button } from '../../components/Button'
+import { RoomCode } from '../../components/RoomCode'
+import { Question } from '../../components/Question'
+import { Header } from '../../components/Header'
+import { database } from '../../services/firebase'
 
-import { useAuth } from "../../context/Auth";
-import { useRoom } from "../../hooks/useRoom";
+import { useAuth } from '../../context/Auth'
+import { useRoom } from '../../hooks/useRoom'
 
 import {
   Container,
@@ -17,64 +17,63 @@ import {
   RoomTitle,
   Form,
   FormFooter,
-  QuestionList,
-} from "./styles";
+  QuestionList
+} from './styles'
 
 type RoomParams = {
-  room_id: string;
-};
+  room_id: string
+}
 
-export function Room() {
-  const [newQuestion, setNewQuestion] = useState("");
+export function Room(): JSX.Element {
+  const [newQuestion, setNewQuestion] = useState('')
 
-  const params = useParams<RoomParams>();
-  const roomId = params.room_id;
+  const params = useParams<RoomParams>()
+  const roomId = params.room_id
 
-  const { title, questions, roomHasClosed } = useRoom(roomId);
+  const { title, questions, roomHasClosed } = useRoom(roomId)
 
-  const { user, signInWithGoogle } = useAuth();
+  const { user, signInWithGoogle } = useAuth()
 
-  const history = useHistory();
+  const history = useHistory()
 
   useEffect(() => {
-    const hasLoadedRoomInfo = roomHasClosed !== undefined;
+    const hasLoadedRoomInfo = roomHasClosed !== undefined
 
     if (roomHasClosed && hasLoadedRoomInfo) {
-      toast.error("Room already close");
-      history.push("/");
-      return;
+      toast.error('Room already close')
+      history.push('/')
     }
-  }, [history, roomHasClosed]);
+  }, [history, roomHasClosed])
 
   useEffect(() => {
-    document.title = `Letmeask - Sala ${title}`;
-  }, [title]);
+    document.title = `Letmeask - Sala ${title}`
+  }, [title])
 
   async function handleSendQuestion(event: FormEvent) {
-    event.preventDefault();
+    event.preventDefault()
 
-    if (newQuestion.trim() === "") {
-      return;
+    if (newQuestion.trim() === '') {
+      return
     }
 
     if (!user) {
-      toast.error("You must be logged in");
-      return;
+      toast.error('You must be logged in')
+      return
     }
 
     const question = {
       content: newQuestion,
       author: {
         name: user.name,
-        avatar: user.avatar,
+        avatar: user.avatar
       },
       isHighlighted: false,
-      isAnswered: false,
-    };
+      isAnswered: false
+    }
 
-    await database.ref(`rooms/${roomId}/questions`).push(question);
+    await database.ref(`rooms/${roomId}/questions`).push(question)
 
-    setNewQuestion("");
+    setNewQuestion('')
   }
 
   async function handleLikeQuestion(
@@ -84,11 +83,11 @@ export function Room() {
     if (likeId) {
       await database
         .ref(`rooms/${roomId}/questions/${questionId}/likes/${likeId}`)
-        .remove();
+        .remove()
     } else {
       await database.ref(`rooms/${roomId}/questions/${questionId}/likes`).push({
-        authorId: user?.id,
-      });
+        authorId: user?.id
+      })
     }
   }
 
@@ -108,7 +107,7 @@ export function Room() {
           <textarea
             placeholder="O que você quer perguntar?"
             value={newQuestion}
-            onChange={(event) => setNewQuestion(event.target.value)}
+            onChange={event => setNewQuestion(event.target.value)}
           />
 
           <FormFooter>
@@ -119,7 +118,7 @@ export function Room() {
               </div>
             ) : (
               <span>
-                Para enviar uma pergunta,{" "}
+                Para enviar uma pergunta,{' '}
                 <button onClick={signInWithGoogle}>faça seu login.</button>
               </span>
             )}
@@ -131,7 +130,7 @@ export function Room() {
         </Form>
 
         <QuestionList>
-          {questions.map((question) => {
+          {questions.map(question => {
             return (
               <Question
                 key={question.id}
@@ -142,7 +141,7 @@ export function Room() {
               >
                 {!question.isAnswered && (
                   <button
-                    className={`like-button ${question.likeId ? "liked" : ""}`}
+                    className={`like-button ${question.likeId ? 'liked' : ''}`}
                     type="button"
                     aria-label="Marcar como gostei"
                     onClick={() =>
@@ -170,10 +169,10 @@ export function Room() {
                   </button>
                 )}
               </Question>
-            );
+            )
           })}
         </QuestionList>
       </Main>
     </Container>
-  );
+  )
 }

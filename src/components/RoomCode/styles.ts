@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.button`
   height: 40px;
@@ -30,8 +30,8 @@ export const Container = styled.button`
     font-weight: 500;
 
     color: ${({ theme }) =>
-      theme.title === "light"
+      theme.title === 'light'
         ? theme.text.black.primary
         : theme.text.white.primary};
   }
-`;
+`
