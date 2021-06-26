@@ -1,7 +1,7 @@
 import { ReactNode, createContext } from 'react'
 import { DefaultTheme, ThemeProvider } from 'styled-components'
 
-import usePersistedState from '../hooks/usePersistedState'
+import { usePersistedState } from '../hooks/usePersistedState'
 
 import dark from '../styles/theme/dark'
 import light from '../styles/theme/light'
